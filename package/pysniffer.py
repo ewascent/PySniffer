@@ -82,9 +82,6 @@ class tcp_header(object):
         return self
 
 class packet_stream(object):
-    def __init__(self):
-        return self
-
     def __iter__(self):
         # we are dealing with C types here. refer to https://docs.python.org/2/library/struct.html#format-characters
         # and https://docs.python.org/2/library/struct.html#struct-alignment
@@ -93,16 +90,17 @@ class packet_stream(object):
         headers = h.tcp_details()
         headerlen = str(len(headers))
         # format !:network, 2: length s: char(c) or str(python), struct to unpack
-        for header in struct.unpack('!'+ headerlen + 's',headers):
-            yield self.header
+        for self.header in struct.unpack('!'+ headerlen + 's',headers):
+            return self.header
 
+        #return self.header
 
 class port_list(object):
     def __init__(self, startPort, endPort):
         self.startPort = startPort
         self.endPort = endPort
 
-    def ListPortSerice(self):
+    def ListPortService(self):
         self.portRange = range(self.startPort, self.endPort)
         self.ValidPorts = []
         self.InvalidPorts = []

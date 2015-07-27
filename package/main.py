@@ -1,28 +1,25 @@
-import pysniffer as snif
-port_list = snif.port_list(1,5000)
-stream = snif.packet_stream()
+import pysniffer as ps
+
  
 class main(object):
-    """description of class"""
-    def __init__(self):
-        return self
-        #instantiate port_list
-        port_list.ListPortSerice()
-        
-        for port in port_list.ValidPorts():
-            print(port)
-    
+    """main class for this module"""
 
-        for packet in stream:
-            cnt = 0
-            for element in packet:
-                print(type(element))
-                try:
-                    sourcePort = socket.inet_ntoa(element[cnt])
-                    destinationPort = socket.inet_ntoa(element[cnt+1])
-                    print('Source Port: ' + sourcePort)
-                    print('Destination Port: ' + destinationPort)
-                    cnt = cnt + 1
-                except:
-                    print('Unexpected error:', sys.exc_info()[0])
-main()
+    pl = ps.port_list(1,5000)
+    pl.ListPortService()
+    for port in pl.ValidPorts:
+        print(port)
+
+    strm = ps.packet_stream
+    strm
+    for packet in strm.header:
+        __cnt = 0
+        for element in packet:
+            print(type(element))
+            try:
+                sourcePort = socket.inet_ntoa(element[__cnt])
+                destinationPort = socket.inet_ntoa(element[__cnt+1])
+                print('Source Port: ' + sourcePort)
+                print('Destination Port: ' + destinationPort)
+                __cnt = __cnt + 1
+            except:
+                print('Unexpected error:', sys.exc_info()[0])
